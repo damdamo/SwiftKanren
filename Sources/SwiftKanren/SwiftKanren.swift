@@ -78,7 +78,8 @@ public class VariableFactory {
 
 public struct Value<T: Equatable>: Term {
 
-    fileprivate let wrapped: T
+    // fileprivate let wrapped: T
+    public let wrapped: T
 
     public init(_ val: T) {
         self.wrapped = val
@@ -196,7 +197,7 @@ public struct Map: Term {
 //    public var values: LazyMapCollection<StorageType, Term> {
 //        return self.storage.values
 //    }
-  
+
     public var keys: Dictionary<String, Term>.Keys  {
         return self.storage.keys
     }
@@ -288,7 +289,7 @@ public struct Substitution {
     fileprivate var storage = [Variable: Term]()
 
     public typealias Association = (variable: Variable, term: Term)
-  
+
     public init() {}
 
     public subscript(_ key: Term) -> Term {
