@@ -43,14 +43,6 @@ public struct Variable: Term {
 
 extension Variable: Hashable {
 
-    public var hashValue: Int {
-        return self.name.hashValue
-    }
-
-    public static func == (left: Variable, right: Variable) -> Bool {
-        return left.name == right.name
-    }
-
 }
 
 extension Variable: CustomStringConvertible {
@@ -197,11 +189,19 @@ public struct Map: Term {
         self.storage = storage
     }
 
-    public var keys: LazyMapCollection<StorageType, String> {
+//    public var keys: LazyMapCollection<StorageType, String> {
+//        return self.storage.keys
+//    }
+//
+//    public var values: LazyMapCollection<StorageType, Term> {
+//        return self.storage.values
+//    }
+  
+    public var keys: Dictionary<String, Term>.Keys  {
         return self.storage.keys
     }
 
-    public var values: LazyMapCollection<StorageType, Term> {
+    public var values: Dictionary<String, Term>.Values {
         return self.storage.values
     }
 
@@ -288,6 +288,8 @@ public struct Substitution {
     fileprivate var storage = [Variable: Term]()
 
     public typealias Association = (variable: Variable, term: Term)
+  
+    public init() {}
 
     public subscript(_ key: Term) -> Term {
         // If the the given key isn't a variable, we can just give it back.
