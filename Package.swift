@@ -3,12 +3,12 @@
 import PackageDescription
 
 let package = Package(
-  name: "LogicKit",
+  name: "SwiftKanren",
   products: [
-    .library(name: "LogicKit", type: .static, targets: ["LogicKit"]),
+    .library(name: "LogicKit", type: .static, targets: ["SwiftKanren"]),
   ],
   targets: [
-    .target(name: "LogicKit"),
-    .testTarget(name: "LogicKitTests", dependencies: ["LogicKit"]),
+    .target(name: "SwiftKanren"),
+    .testTarget(name: "SwiftKanrenTests", dependencies: ["SwiftKanren"]),
   ]
 )
